@@ -26,21 +26,22 @@ export default class TimeGutter extends Component {
   renderSlot = (value, idx) => {
     if (idx !== 0) return null
     const { localizer, getNow } = this.props
-
     const isNow = this.slotMetrics.dateIsInGroup(getNow(), idx)
-    return (
-      <span className={cn('rbc-label', isNow && 'rbc-now')}>
-        {localizer.format(value, 'timeGutterFormat')}
-      </span>
-    )
+    const label = localizer.format(value, 'timeGutterFormat')
+    return <span className={cn('rbc-label', isNow && 'rbc-now')}>{label}</span>
+  }
+
+  renderApp = (value, idx) => {
+    const { getNow } = this.props
+    const isNow = this.slotMetrics.dateIsInGroup(getNow(), idx)
+    return <span className={cn('rbc-label', isNow && 'rbc-now')}>{value}</span>
   }
 
   render() {
-    const { resource, components } = this.props
-
+    const { resource, components, applications } = this.props
     return (
       <div className="rbc-time-gutter rbc-time-column">
-        {this.slotMetrics.groups.map((grp, idx) => {
+        {/* {this.slotMetrics.groups.map((grp, idx) => {
           return (
             <TimeSlotGroup
               key={idx}
@@ -48,9 +49,23 @@ export default class TimeGutter extends Component {
               resource={resource}
               components={components}
               renderSlot={this.renderSlot}
+              applications={applications}
+              renderApp={this.renderApp}
             />
           )
-        })}
+        })} */}
+        {// applications.map(d => <div className="rbc-timeslot-group">{d}</div>)
+        applications.map((grp, idx) => (
+          <TimeSlotGroup
+            key={idx}
+            group={grp}
+            resource={resource}
+            components={components}
+            renderSlot={this.renderSlot}
+            applications={applications}
+            renderApp={this.renderApp}
+          />
+        ))}
       </div>
     )
   }

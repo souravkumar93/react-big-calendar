@@ -97,6 +97,7 @@ class DayColumn extends React.Component {
       resource,
       accessors,
       localizer,
+      applications,
       getters: { dayProp, ...getters },
       components: { eventContainerWrapper: EventContainer, ...components },
     } = this.props
@@ -107,7 +108,6 @@ class DayColumn extends React.Component {
     let selectDates = { start: startDate, end: endDate }
 
     const { className, style } = dayProp(max)
-
     return (
       <div
         style={style}
@@ -120,7 +120,7 @@ class DayColumn extends React.Component {
           selecting && 'rbc-slot-selecting'
         )}
       >
-        {slotMetrics.groups.map((grp, idx) => (
+        {applications.map((grp, idx) => (
           <TimeSlotGroup
             key={idx}
             group={grp}

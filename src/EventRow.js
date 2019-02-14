@@ -12,7 +12,7 @@ class EventRow extends React.Component {
     } = this.props
 
     let lastEnd = 1
-
+    // debugger;
     return (
       <div className={cn(className, 'rbc-row')}>
         {segments.reduce((row, { event, left, right, span }, li) => {

@@ -74,7 +74,7 @@ class Calendar extends React.Component {
     /**
      * The current view of the calendar.
      *
-     * @default 'month'
+     * @default 'week'
      * @controllable onView
      */
     view: PropTypes.string,
@@ -717,7 +717,7 @@ class Calendar extends React.Component {
     elementProps: {},
     popup: false,
     toolbar: true,
-    view: views.MONTH,
+    view: views.WEEK,
     views: [views.MONTH, views.WEEK, views.DAY, views.AGENDA],
     step: 30,
     length: 30,
@@ -736,6 +736,7 @@ class Calendar extends React.Component {
 
     longPressThreshold: 250,
     getNow: () => new Date(),
+    applications: ['nova', 'payment', 'planning'],
   }
 
   constructor(...args) {
@@ -847,6 +848,7 @@ class Calendar extends React.Component {
       getNow,
       length,
       showMultiDayTimes,
+      applications,
       components: _0,
       formats: _1,
       messages: _2,
@@ -904,6 +906,7 @@ class Calendar extends React.Component {
           onDoubleClickEvent={this.handleDoubleClickEvent}
           onSelectSlot={this.handleSelectSlot}
           onShowMore={this._showMore}
+          applications={applications}
         />
       </div>
     )
@@ -920,7 +923,6 @@ class Calendar extends React.Component {
    */
   handleRangeChange = (date, viewComponent, view) => {
     let { onRangeChange, localizer } = this.props
-
     if (onRangeChange) {
       if (viewComponent.range) {
         onRangeChange(viewComponent.range(date, { localizer }), view)

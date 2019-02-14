@@ -9,7 +9,6 @@ class Toolbar extends React.Component {
       localizer: { messages },
       label,
     } = this.props
-
     return (
       <div className="rbc-toolbar">
         <span className="rbc-btn-group">

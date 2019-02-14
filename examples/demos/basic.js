@@ -4,7 +4,8 @@ import events from '../events'
 import dates from '../../src/utils/dates'
 
 let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
-
+allViews = ['week', 'agenda']
+console.log(allViews)
 let Basic = ({ localizer }) => (
   <BigCalendar
     events={events}

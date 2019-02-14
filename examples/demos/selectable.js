@@ -8,7 +8,6 @@ const propTypes = {}
 class Selectable extends React.Component {
   constructor(...args) {
     super(...args)
-
     this.state = { events }
   }
 
@@ -29,25 +28,19 @@ class Selectable extends React.Component {
 
   render() {
     const { localizer } = this.props
+    const allViews = ['week', 'agenda']
     return (
-      <>
-        <ExampleControlSlot.Entry waitForOutlet>
-          <strong>
-            Click an event to see more info, or drag the mouse over the calendar
-            to select a date/time range.
-          </strong>
-        </ExampleControlSlot.Entry>
-        <BigCalendar
-          selectable
-          localizer={localizer}
-          events={this.state.events}
-          defaultView={BigCalendar.Views.WEEK}
-          scrollToTime={new Date(1970, 1, 1, 6)}
-          defaultDate={new Date(2015, 3, 12)}
-          onSelectEvent={event => alert(event.title)}
-          onSelectSlot={this.handleSelect}
-        />
-      </>
+      <BigCalendar
+        selectable
+        localizer={localizer}
+        events={this.state.events}
+        defaultView={BigCalendar.Views.WEEK}
+        views={allViews}
+        scrollToTime={new Date()}
+        defaultDate={new Date()}
+        onSelectEvent={event => alert(event.title)}
+        onSelectSlot={this.handleSelect}
+      />
     )
   }
 }

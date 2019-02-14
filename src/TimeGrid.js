@@ -152,6 +152,7 @@ export default class TimeGrid extends Component {
       max,
       showMultiDayTimes,
       longPressThreshold,
+      applications,
     } = this.props
 
     width = width || this.state.gutterWidth
@@ -223,6 +224,7 @@ export default class TimeGrid extends Component {
             getNow={this.props.getNow}
             timeslots={this.props.timeslots}
             components={components}
+            applications={applications}
             className="rbc-time-gutter"
           />
           {this.renderEvents(range, rangeEvents, getNow())}

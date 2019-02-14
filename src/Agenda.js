@@ -73,7 +73,7 @@ class Agenda extends React.Component {
     events = events.filter(e =>
       inRange(e, dates.startOf(day, 'day'), dates.endOf(day, 'day'), accessors)
     )
-
+    // console.log(events);
     return events.map((event, idx) => {
       let title = accessors.title(event)
       let end = accessors.end(event)
@@ -100,6 +100,14 @@ class Agenda extends React.Component {
           false
         )
 
+      let last =
+        idx === 0 ? (
+          <td rowSpan={events.length} className="rbc-agenda-date-cell">
+            <button>build</button>
+          </td>
+        ) : (
+          false
+        )
       return (
         <tr
           key={dayKey + '_' + idx}
@@ -113,6 +121,7 @@ class Agenda extends React.Component {
           <td className="rbc-agenda-event-cell">
             {Event ? <Event event={event} title={title} /> : title}
           </td>
+          {last}
         </tr>
       )
     }, [])
